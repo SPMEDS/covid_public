@@ -1,0 +1,356 @@
+---
+scname: "R Notebook"
+output: html_notebook
+---
+
+## Model code and generic parameters 
+
+```{r}
+tmonth = 36
+datebreak = "3 months"
+source("code/model_functions.R")
+
+```
+
+# Response scenarios
+
+```{r }
+
+scname = ('SC0_RESPONSE')
+scens_lbl = c('First wave threshold',
+              'Second wave threshold',
+              'Weak NPI response'
+              )
+nscen = length(scens_lbl)
+sctry = c('FRseas20sec90fw42','FRseas20sec90sw42','FRseas20sec90weak42')
+scenv = rep('SC0',nscen)
+
+
+for (i in 1:3) { run_scenario(sctry[i],scenv[i],tmonth)}
+
+per_g = c(1,36) 
+source(paste0(codeF,'compare_incid.R')) 
+
+```
+
+
+```{r }
+
+scname = ('SC1_RESPONSE')
+scens_lbl = c('First wave threshold',
+              'Second wave threshold',
+              'Weak NPI response'
+              )
+nscen = length(scens_lbl)
+
+sctry = c('FRseas20sec90fw42','FRseas20sec90sw42','FRseas20sec90weak42')
+scenv = rep('SC1vi_e70',nscen)
+
+for (i in 1:3) { run_scenario(sctry[i],scenv[i],tmonth)}
+
+per_g = c(1,36) 
+source(paste0(codeF,'compare_incid.R')) 
+
+```
+
+
+```{r }
+
+scname = ('SC3_RESPONSE')
+scens_lbl = c('First wave threshold',
+              'Second wave threshold',
+              'Weak NPI response'
+              )
+nscen = length(scens_lbl)
+
+sctry = c('FRseas20sec90fw42','FRseas20sec90sw42','FRseas20sec90weak42')
+scenv = rep('SC3vi_e70',nscen)
+
+for (i in 1:3) { run_scenario(sctry[i],scenv[i],tmonth)}
+
+per_g = c(1,36) 
+source(paste0(codeF,'compare_incid.R')) 
+
+```
+
+# Disease scenarios
+
+```{r }
+
+scname = ('SC0_DISEASE')
+scens_lbl = c('Seasonality 40%',
+              'Seasonality 0%',
+              'Reinfection 50%',
+              'Reinfection 0%')
+nscen = length(scens_lbl)
+
+sctry = c('FRseas40sec90sw42','FRseas0sec90sw42','FRseas20sec50sw42','FRseas20sec0sw42')
+scenv = rep('SC0',nscen)
+
+for (i in 1:nscen) { run_scenario(sctry[i],scenv[i],tmonth)}
+
+per_g = c(1,36) 
+source(paste0(codeF,'compare_incid.R')) 
+
+```
+
+```{r }
+
+scname = ('SC1_DISEASE')
+scens_lbl = c('Seasonality 40%',
+              'Seasonality 0%',
+              'Reinfection 50%',
+              'Reinfection 0%')
+nscen = length(scens_lbl)
+
+sctry = c('FRseas40sec90sw42','FRseas0sec90sw42','FRseas20sec50sw42','FRseas20sec0sw42')
+scenv = rep('SC1vi_e70',nscen)
+
+for (i in 1:nscen) { run_scenario(sctry[i],scenv[i],tmonth)}
+
+per_g = c(1,36) 
+source(paste0(codeF,'compare_incid.R')) 
+
+```
+
+
+```{r }
+
+scname = ('SC3_DISEASE')
+scens_lbl = c('Seasonality 40%',
+              'Seasonality 0%',
+              'Reinfection 50%',
+              'Reinfection 0%')
+nscen = length(scens_lbl)
+
+sctry = c('FRseas40sec90sw42','FRseas0sec90sw42','FRseas20sec50sw42','FRseas20sec0sw42')
+scenv = rep('SC3vi_e70',nscen)
+
+for (i in 1:nscen) { run_scenario(sctry[i],scenv[i],tmonth)}
+
+per_g = c(1,36) 
+source(paste0(codeF,'compare_incid.R')) 
+
+```
+
+# NPIs discontinuation in the absence of vaccination
+
+```{r }
+
+scname = ('NPI_SC0')
+scens_lbl = c('No vaccination - NPI stopped 01/01/2021',
+              'No vaccination - NPI stopped 01/01/2022',
+              'No vaccination - NPI stopped 01/07/2023'
+              )
+nscen = length(scens_lbl)
+
+sctry = c('FRseas20sec90sw12','FRseas20sec90sw24','FRseas20sec90sw42')
+scenv = rep('SC0',nscen)
+
+for (i in 1:2) { run_scenario(sctry[i],scenv[i],tmonth)}
+
+per_g = c(1,36) 
+source(paste0(codeF,'compare_incid.R')) 
+
+```
+
+
+# NPI stopped in 2021 for vaccination scenarios
+
+```{r }
+
+scname = ('NPI_2021')
+scens_lbl = c('Uptake constraint - NPI stopped 01/01/2021',
+              'Strong supply constraint - NPI stopped 01/01/2021',
+              'Weak supply constraint - NPI stopped 01/01/2021',
+              'Relaxed strong supply constraint - NPI stopped 01/01/2021',
+              'Relaxed weak supply constraint - NPI stopped 01/01/2021'
+              )
+nscen = length(scens_lbl)
+
+sctry = rep ('FRseas20sec90sw12',nscen)
+scenv = c('SC1vi_e70','SC2vi_e70','SC2Bvi_e70','SC3vi_e70','SC3Bvi_e70')
+scens = paste0(sctry,scenv)
+
+for (i in 1:nscen) { run_scenario(sctry[i],scenv[i],tmonth)}
+
+per_g = c(1,36) 
+source(paste0(codeF,'compare_incid.R')) 
+
+
+```
+
+
+# NPIs stopped in 2022 for vaccination scenarios
+
+
+```{r }
+# NPI maintained until end of 2021
+
+scname = ('NPI_2022')
+scens_lbl = c('Uptake constraint - NPI stopped 01/01/2022',
+              'Strong supply constraint - NPI stopped 01/01/2022',
+              'Weak supply constraint - NPI stopped 01/01/2022',
+              'Relaxed strong supply constraint - NPI stopped 01/07/2023',
+              'Relaxed weak supply constraint - NPI stopped 01/07/2023'
+              )
+nscen = length(scens_lbl)
+
+sctry = rep ('FRseas20sec90sw24',nscen)
+scenv = c('SC1vi_e70','SC2vi_e70','SC2Bvi_e70','SC3vi_e70','SC3Bvi_e70')
+scens = paste0(sctry,scenv)
+
+for (i in 1:nscen) { run_scenario(sctry[i],scenv[i],tmonth)}
+
+per_g = c(1,36) 
+source(paste0(codeF,'compare_incid.R')) 
+
+
+```
+
+
+# uptake constraint scenarios
+
+```{r }
+
+
+scname = ('UPTAKE_EFF')
+scens_lbl = c('No vaccination','Uptake constraint')
+nscen = length(scens_lbl)
+eff = seq(50,90,10)
+ctryref = 'FRseas20sec90sw42'
+sctry = rep(ctryref,nscen)
+
+for (ef in eff)
+{
+  sctry = rep('FRseas20sec90sw42',nscen)
+  scenv = c('SC0',paste0('SC1vi_e',ef))
+  scens = paste0(sctry,scenv)
+  
+  for (i in 2:nscen) { run_scenario(sctry[i],scenv[i],tmonth)}
+  
+}
+
+per_g = c(1,36) 
+
+
+scenref = paste0(ctryref,'SC0')
+scenv = paste0('SC1vi_e',eff)
+scens = paste0(ctryref,scenv)
+scens = cbind(scens,paste0(ctryref,scenv))
+
+source(paste0(codeF,'graph_hosp.R')) 
+
+
+```
+
+# Strong supply constraint
+
+```{r }
+
+scname = ('STRONG_EFF')
+scens_lbl = c('No vaccination','Relaxed strong supply and uptake constraint','Strong supply constraint')
+nscen = length(scens_lbl)
+eff = seq(50,90,10)
+ctryref = 'FRseas20sec90sw42'
+sctry = rep(ctryref,nscen)
+
+for (ef in eff)
+{
+  scenv = c('SC0',paste0('SC2vi_e',ef),paste0('SC3vi_e',ef))
+  for (i in 2:nscen) { run_scenario(sctry[i],scenv[i],tmonth)}
+}
+
+per_g = c(1,36) 
+
+scenref = paste0(ctryref,'SC0')
+scenv = paste0('SC3vi_e',eff)
+scens = paste0(ctryref,scenv)
+scenv = paste0('SC2vi_e',eff)
+scens = cbind(scens,paste0(ctryref,scenv))
+
+source(paste0(codeF,'graph_hosp.R')) 
+
+```
+
+# Weak supply constraint
+
+```{r }
+
+scname = ('WEAK_EFF')
+scens_lbl = c('No vaccination','Relaxed weak supply and uptake constraint','Weak uptake constraint')
+nscen = length(scens_lbl)
+eff = seq(50,90,10)
+ctryref = 'FRseas20sec90sw42'
+sctry = rep(ctryref,nscen)
+
+for (ef in eff)
+{
+  sctry = rep('FRseas20sec90sw42',nscen)
+  scenv = c('SC0',paste0('SC2Bvi_e',ef),paste0('SC3Bvi_e',ef))
+
+  for (i in 2:nscen) { run_scenario(sctry[i],scenv[i],tmonth)}
+
+}
+
+per_g = c(1,36) 
+
+scenref = paste0(ctryref,'SC0')
+scenv = paste0('SC3Bvi_e',eff)
+scens = paste0(ctryref,scenv)
+scenv = paste0('SC2Bvi_e',eff)
+scens = cbind(scens,paste0(ctryref,scenv))
+
+source(paste0(codeF,'graph_hosp.R')) 
+
+
+```
+
+
+# protection against symptoms
+
+```{r }
+# 2021 - NPI maintained
+
+scname = ('POS')
+scens_lbl = c('SC1 POS 70%',
+              'SC2 POS 70%',
+              'SC2B POS 70%',
+              'SC3 POS 70%',
+              'SC3B POS 70%')
+nscen = length(scens_lbl)
+
+sctry = rep ('FRseas20sec90sw42',nscen)
+scenv = c('SC1vs_e70','SC2vs_e70','SC2vs_e70','SC3vs_e70','SC3Bvs_e70')
+scens = paste0(sctry,scenv)
+
+for (i in 1:nscen) { run_scenario(sctry[i],scenv[i],tmonth)}
+
+
+per_g = c(1,36) 
+source(paste0(codeF,'compare_incid.R')) 
+
+```
+
+
+# Duration of immunity 2 years
+
+
+```{r }
+
+scname = ('WANING_2Y')
+scens_lbl = c('No vaccination','Uptake constraint','Relaxed strong supply and uptake constraint')
+nscen = length(scens_lbl)
+
+sctry = rep ('FRwan2seas20sec90sw42',nscen)
+scenv = c('SC0vi_e70','SC1vi_e70','SC3vi_e70')
+
+for (i in 1:nscen) { run_scenario(sctry[i],scenv[i],tmonth)}
+
+per_g = c(1,36) 
+source(paste0(codeF,'compare_incid.R')) 
+
+
+```
+
+

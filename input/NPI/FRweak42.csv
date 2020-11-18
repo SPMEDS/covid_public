@@ -1,0 +1,9 @@
+Name,Description,value
+thrage_start,Start for age-based distancing (months),7
+thrage_end,End of age-based distancing (months),24
+thresh,Threshold for outbreak (number of hospitalized),0.0002
+thresh_low,End of threshold-based intervention,0.5
+sdist_reduc,daily reduction of distancing when threshold-based NPI are started,0.870550563296124
+sdist_relax,daily increase of distancing when threshold-based NPI are relaxed,1.02337389199677
+thresh_Rt,targeted effective reproduction number when when threshold-based NPI are activated,1
+thresh_end,End of threshhold-based distancing (months),42

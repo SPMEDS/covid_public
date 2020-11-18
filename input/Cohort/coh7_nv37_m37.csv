@@ -1,0 +1,7 @@
+Name,Description,value
+ncoh,age group for cohort,7
+popcoh,Cohort population size,1
+vcoh,Vaccination status of the cohort,0
+mcoh,month for vaccination of the cohort,37
+mdeb,start of cohort follow-up,37
+stcoh,state of the cohort,1

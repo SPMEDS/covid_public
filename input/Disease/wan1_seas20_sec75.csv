@@ -1,0 +1,10 @@
+"Name","Description","value"
+"f1","Relative infectiousness Asymptomatic",0.75
+"f2","Relative infectiousness mild",1
+"f3","Relative infectiousness Severe",1
+"epsilon","Average duration of latent period (days)",5
+"delta","Average duration of infectiousness (days)",2
+"tau","Median duration of Immunity (years)",1
+"poiX","Reduction of severity in case of secondary infection",0.75
+"seas_month","Peak seasonality",0.25
+"seas_amp","Amplitude of seasonal forcing",0.2

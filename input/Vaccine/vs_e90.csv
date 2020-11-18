@@ -1,0 +1,9 @@
+"Name","Description","vaccine1","vaccine2"
+"eff_f","Tempory full protection against infection (SW)",0,0
+"eff_ps","Partial protection against infection and symptoms -S ",1,1
+"eff_pw","Partial protection against infection and symptoms - W",0,0
+"eff_rf","Tempory full protection against infection (R)",0,0
+"eff_i","Reducted infectivitiy in case of partial protection ",0,0
+"wan","Duration of temporary full protection ",1,1
+"poiv","Reduction of severity for infection among vaccinees",0.9,0.9
+"pstart","Delay between vaccination and start of protection",1,1
