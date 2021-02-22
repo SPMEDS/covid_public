@@ -197,15 +197,13 @@ while (nb <= length(scens))
     theme(legend.position= "bottom") +
     guides(colour=guide_legend(nrow=2,byrow=TRUE))
   
-  if (thresh_line){
     tmp <- tmp  %>% mutate(thresh = NA)
     for (i in 1:nscen){
       tmp$thresh[tmp$scenario== scens_lbl[i]] <- thresh_g[i]
     }
-    g_tmp <- g_tmp +
-      geom_line(aes(x = tmp$modeltime , y = tmp$thresh, group  = tmp$scenario),size = 0.5, linetype = "dashed", color = "black") 
-  }
-  
+  g_tmp <- g_tmp +
+    geom_line(aes(x = tmp$modeltime , y = tmp$thresh, group  = tmp$scenario),size = 0.5, linetype = "dashed", color = "black") 
+
   ggsave(file=paste0(figF,ctryF,scname,file = "_hosp_inc.png"), plot=g_tmp, width=10.5, height=7.5, device ='png', scale = 0.75)
 
   #  cases
