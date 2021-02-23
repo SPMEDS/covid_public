@@ -1,48 +1,37 @@
 # Covid-model
 
-The _covid-model_ project contains the code enabling to reproduce the results
-presented in the article entitled "Critical uncertainties impacting accelerated industry response to 
-COVID-19: modeling insights Age-structured" article 
+The covid vaccine project contains the code enabling to produce the results
+presented in the article entitled "Potential impact of introducing vaccines against COVID-19 under supply and uptake constraints in France: a modelling study" article 
 
 The project is organized as follows:
-- Code
-  + covid_model.R: the SEIR transmission model itself, with utility functions,
+- code
+  + model_function.R: the SEIR transmission model itself, with utility functions,
                    to load inputs or plot graphs for example, and general
                    parameters
-  + launch.R: code to launch the computation and creation of figures for three
-              use cases: the mid-term medium thresholds scenario for Italy, United
-              States and South Korea.
-- Input : this folder contains the configuration settings specific to each
-          scenario.
-  + IT1: folder for Italy
-  + KOR1: folder for South-Korea
-  + US1 : folder for the United States of America
-- Observed: reported cases and deaths, from European Center for Disease
-            Prevention and Control (https://qap.ecdc.europa.eu/public/extensions/COVID-19/COVID-19.html),
-            and adjusted cases per day (method described in the Supplementary material)
-- Results: folder with one sub-folder per country including both csv files containing 
-           model outputs by day and age group and png files being the output graphs.
-           The files provided correspond to the three scenarios described above.
+  + compare_incid.R: the code to generate graph comparing different scenarios.
+  + graph_hosp.R: the code to generate hospitalisations graph for a range of vaccine efficacy.
+- input : this folder contains all the input files used for generating the different scenarios.
+- result: The folder to store result files corresponding to each scenario
+- figure: The folder to store graph allowing comparing scenario results
               
-It is possible to generate the other graphs in the manuscript by adapting
-parameters in launch.R script and input files based on information
-detailed in the Supplementary material.
 
 ## Installation & execution
 
 The code was developed and tested with R version 3.6.2 (2019-12-12) through
-R Studio.
+R Studio. 
 
 ### Dependencies
 Two libraries need to be present on your R system:
 - deSolve
 - tidyverse
+- scales
+
 
 ### Execution
 
-1. Ensure the working directory for R is "~/your_own_path/covid-model"
-2. Launch the execution of part or whole launch.R
-3. You will find newly produced results in a Results directory sub-folder(s)
+1. Open the RStudio project
+2. Launch the R notebook "Results_vaccination"
+3. You will find newly produced results in a Results directory sub-folder and Figures in figure sub-folder
 
 ## Disclaimers
 
@@ -57,5 +46,4 @@ Two libraries need to be present on your R system:
   any errors.
 
 ## Acknowledgments
-The development of this code benefitted from code implemented for a malaria transmission model at the University of Cape Town, South Afric
-https://github.com/sheetalsilal/METCAP
+The code presented here expands on a code initially developped for the following article https://dx.doi.org/10.1016%2Fj.vaccine.2020.10.034

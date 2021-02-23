@@ -5,9 +5,7 @@
 ############################################
 
 
-library(adaptivetau)
 library(deSolve)
-library(readxl)
 library(tidyverse)
 library(scales)
 
