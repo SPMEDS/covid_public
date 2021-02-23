@@ -47,3 +47,5 @@ Two libraries need to be present on your R system:
 
 ## Acknowledgments
 The code presented here expands on a code initially developped for the following article https://dx.doi.org/10.1016%2Fj.vaccine.2020.10.034
+
+-> Gibub version
