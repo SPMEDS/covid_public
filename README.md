@@ -2,7 +2,7 @@
 
 The covid vaccine project contains the code enabling to produce the results
 presented in the article entitled "Potential impact of introducing vaccines against COVID-19 under supply and uptake constraints in France: a modelling study" article 
-
+Test UAT
 The project is organized as follows:
 - code
   + model_function.R: the SEIR transmission model itself, with utility functions,
